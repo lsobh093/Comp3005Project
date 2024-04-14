@@ -4,6 +4,8 @@ Welcome to my fitness management system:
 Purpose:
 To design and implement a fitness management system that allows members, trainers, and staff admin members to store, interact with, and retrieve data correspnding to distinct types of data. The ER model for the database and it's corresponding transformation into a database schema are provided (ER model.docx and SchemaDiagram.png). I have also included a file (How to use the application.docx) to explain how a user should interact with the application, and the intended goal of each function/trigger function/view/table, etc...
 
+Check the Instructions to Run Application word document file to get started.
+
 The files included within this github repository include:
 Java files:
 Main.java
