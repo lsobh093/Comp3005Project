@@ -1,0 +1,37 @@
+Purpose of each uploaded SQL file:
+
+Created Views:
+
+1. CalendarforMembers VIEW.sql
+The purpose of this view is to show the Calendar of the classes available and the trainers that lead each class. It displays the time, date, status, and the room name where the class will be hosted.
+
+2. ClassAvailability VIEW.sql
+The purpose of this view is similar to the one shown above. However, this view is created mainly for the Admin Staff to see which of the Trainer's availability have been assigned a room.
+
+3. Member_details View SQL.sql
+The purpose of this view is for a Trainer to view the complete profile of a member that is enrolled in their private sessions.
+
+4. PrivateClassCalendar VIEW SQL.sql
+The purpose of this view is to show all the class sessions that are available to a member to enroll in. It shows the name of the Trainer, the date, start time and end time of the class sessions provided by the trainer.
+
+5. PrivateSessionsViewerForTrainer VIEW.sql
+The purpose of this view to show all the members that are enrolled in private sessions led by a specific trainer.
+
+6. trainer_calendar View SQL.sql
+The purpose of this view is for a Trainer to view all their booked availabilities for both private and class sessions
+
+Trigger Functions:
+
+1. Final_calculate health statistics.sql
+This function calculates the average weight, body fat percentage, resting heart rate, and blood pressure and inserts the data into HealthStatistics data. The data calculation is triggered after a member inserts new data into the MemberHealthMetrics table. This is supposed to simulate a Fitbit. Note that the data is calculated over the past 7 days period.
+
+2. Final_check session conflict.sql
+This function determines if a Trainer has a conflict when adding their availability for private and class sessions. The function is triggered before a Trainer inserts their data into the TrainerAvailability table.
+
+3. Final_trigger_calculate calories and duration.sql
+This function calculates the duration (end time - start time) for a work out by a member, and calculates the amount of calories burned by first accessing the calories burned per minute for a specific exercise multiplied by the duration of the workout. Therefore, simulating a Fitbit.
+
+Project files:
+ProjectDDL - provides the DDL for the tables used for this project.
+ProjectDML - provides some examples to insert into the created DDL for testing purposes. 
+PLEASE NOTE: the data for the Achievements table are calculated and inserted by the Application.
