@@ -1,0 +1,108 @@
+Purpose of the Java files:
+
+1. Main.java
+The main program that will call the UserInteraction class to initiate the application.
+getConnection(): a function that checks and establishes a connection between the JDB and the DBMS.
+
+2. UserInteraction
+Controller class for the differentiation of logins between member, trainer, and admin staff. This class calls other functions pertaining to member, trainer, and admin staff.
+
+3. MemberFunctions
+This class houses various functionality pertaining to members:
+memberRegister(): function for a member to register to the gym application.
+isUsernameExists(): function to check if the username chosen by the new registered member exists or not.
+getNextMemberID(): function to give the new member a new ID based on the last ID that was given to the previous member.
+recordLogin(): function that records the date that the member logged in (it was made to trigger some functions, but it did not happen).
+purchaseMembership(): function that gives the member the choice of purchasing the two types of memberships (basic or premium).
+purchaseSubscription(): function that checks if the member has already purchased a membership, and if not it allows the member to make pay for the membership.
+generateProcessedPayment() and generateInvoice: functions that generate an invoice for payment by the member, which will be processed later by the admin staff.
+manageProfile(): function that allows the member to access different functionality.
+UpdatePersonalInformation(), updateProfileField(): functions that allow the member to update their profile information.
+updatePassword(): function that allows the member to change their password to their login.
+updateGoals(): function that allows the member to either update their goal or if no goal exists, to set up a new goal.
+getGoalName(): function that retrieves the different goal choices from the database.
+updateFtinessGoal(): function that does the actual updating of the goal.
+
+4. MemberHealthFunctions:
+This class allows the member to generate random data for their health metrics, and allows member to view that data. (simulating a Fitbit or a member that wants to keep track of their health).
+UpdateHealthMetrics(): function that allows the member to update their health metrics by entering new data (randomly generated in this case for testing and show purposes), and to view the current health metrics of the member.
+displayHealthMetrics(): function to view the health metrics of the user.
+insertRandomHealthMetrics(): function to randomly generate health metrics data for the member.
+
+5. MemberDashboard:
+The dashboard for members, which allows them to access their workout routines, nutrition journal, health statistics, and achievements.
+dashBoard(): function controller that gives the options to the members to select from.
+viewLatestHealthStatistics(): function that allows the member to view their health statistics.
+viewLatestAchievement(): function that allows the member to view their achievement.
+
+6. MemberExercises:
+This class allows the member to enter and view their exercise routines 
+exerciseRoutine(): function controller that gives various options to the members to select from.
+manualGenerateData(): allows the user to input their exercises based on a preset selection of exercises that can be accessed through loadExercises().
+viewRoutines(): function for viewing the current exercise routines entered by the member.
+checkRoutine(): checks whether or not the member has exercise routines or not. If not, the application asks the member if they want to add new exercise routines.
+
+7. MemberNutrition:
+This class allows the member to enter and view their calorie uptake by keeping a nutrition journal
+nutritionFunction(): function controller that gives various options to the members to select from.
+manualNutritionData(): function that allows the member to enter new nutrition data.
+viewNutritionData(): function that allows a member to view their nutiriton journal.
+checkNutrition(): function that checks if the member had previously entered data or not, if not, it asks for the member to enter new data.
+
+8. MemberRegistration:
+This class allows the member to display the class schedule, register for class activities, and view the classes that the current member is registered in.
+joinClass(): function controller that gives various options to the members to select from.
+viewClass(): function that allows the member to view the current class calendar.
+registerClass(): function that allows the member to register for a specific class. This function relies on other functions such as checkClass(), checkSession(), and classFull() to determine if the class time that the member selected is not impeding with other time slots for other classes, private sessions, and if the class is full or not.
+updateClass(): function that updates the number of members enrolled in a specific class. When a member registers for a class, the number gets updated.
+getNoMembersEnrolled(): a function getter to retrieve the number of members enrolled in the class.
+isMemberRegistered(): function to check if the class that the member is trying to register for is not impeding with other classes already registered for.
+isMemberRegisteredPrivate(): function to check if the class that the member is trying to register for is not impeding with other private sessions already registered for.
+viewClassRegistered(): funcion that allows the member the classes that the member has registered for (upcoming classes).
+
+9. MemberPrivateRegistration
+This class allows a member to register, cancel, and view private sessions
+joinPrivateSession(): function controller that gives various options to the members to select from.
+viewPrivateSession(): function that allows the members to view the calendar for private sessions held by trainers.
+registerPrivate(): function that allows a member to register for a private session. This function checks if a member has a basic or premium membership. If premium membership, no invoice is generated, otherwise one is generated.
+updateSession(): function that updates the availability of a Trainer to 'Full' when a member registers for their private session.
+SessionFull(): function to check if a private session is full or not.
+checkSubscription(): function to check if a member holds a basic or premium membership.
+generateInvoice(): function to generate an invoice for the private session registered for by a member.
+cancelPrivateSession(): function to cancel a private session a member had registered for. When cancelled, the invoice previously generated is deleted, and the availability of the trainer is updated back to 'available'.
+viewPrivateSessionRegistered(): function that allows a member to view the private sessions that they are signed up for.
+
+10. MemberAchievements:
+This class allows the member to view new fitness achievements
+isFitnessReached(): this function determines or not a fitness goal has been reached or not by a member. It takes into consideration the total calories consumed from reported nutrition, total calories burned reported through workout data, and the goal set by the member (weight loss, muscle mass, and maintenance).
+getTotalCaloriesBurned(): function that will return the total calories a member had burned through working out. This data is retrieved over the time period set for the fitnessgoal.
+getTotalCaloriesConsumed(): function that will retur the total calories a member had consumed through nutrition. This data is retrieved over the time period set for the fitnessgoal.
+getNetCaloriesGoal(): function that will return the total calories from a goal (it depends on the goal chosen by the member).
+getGoalType(): function to retrieve the type of goal that a member had chosen.
+
+11. TrainerFunctions:
+This class hosts all the functionality pertaining to the trainer entity.
+nextScreen(): function controller that gives various options to the members to select from.
+trainerAvailability(): function that allows a trainer to view their schedule. Also allows the trainer to choose to add new availability or not.
+addAvailability(): function that allows a trainer to add new availability into their schedule. The DBMS will check if the time and date entered by the trainer to add new availability are valid or not.
+viewClasses(): function that allows all the classes hosted by the specific trainer.
+viewBookedPrivateSessions(): function that allows the trainer to view their booked private sessions, including the names of members that had joined.
+viewMemberProfile(): function that allows the trainer to view the profile of a member. The member would be one that had joined the private sessions of the trainer.
+
+12. AdminFunctions
+This class hosts all the functionality pertaining to the admin staff entity.
+nextScreen(): function controller that gives various options to the members to select from.
+viewTrainerCalendar(): function that allows the admin staff to view the availability of trainers for class sessions. It gives the admin staff the option to assign rooms to the class sessions or not.
+printRooms(): a function that prints all the rooms that have pre-determined in the database.
+assignRoomtoClass(): a function that gives the admin staff the ability to assign a class to some room. 
+availability(): a function that queries the availability time and date of a specific session.
+isroomAlreadyAssigned(): function to check if a room has already been assigned to another session in the same time frame or not.
+checkEquipment(): function that allows the admin staff to check and maintain gym equipment.
+maintainEquipment(): function that allows the admin staff to maintain the gym equipment by adding data into the DBMS.
+equipmentPrintout(): a function that displays all the gym equipments.
+viewTransactions(): function that allows the admin staff to view all the pending transactions.
+memberSubscriptionTransactions(): a getter function for all the transactions pertaining to membership purchases.
+privateMemberPurchases(): a getter function for all the transacations pertaining to private session purchases.
+processMemberSubscriptions() and processPrivateMemberPurchases(): functions that allows the admin staff to "process" the invoices pertaining to memberships and private sessions purchases. They simply make an update to the DBMS replacing NULL values with the current date and the ID of the staff that process the transactions.
+
+
